@@ -1,0 +1,18 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - Grandsteram configuration tool</title>
+        {% else %}
+        <title>Grandsteram configuration tool</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>
+        {% for link in links %}
+            <a href="{{ link.href }}">{{ link.name }}</a>
+        {% endfor -%}
+        </div>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>
