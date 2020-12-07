@@ -1,0 +1,19 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - Microblog</title>
+        {% else %}
+        <title>Welcome to Microblog!</title>
+        {% endif %}
+    </head>
+    <body>
+        {% if user %}
+        <h1>Hello, {{ user.username }}!</h1>
+        {% else %}
+        <h1>Hello, unknown user?!</h1>
+        {% endif %}
+        {% for device in devices %}
+        <div><p>number: {{device.number}} mac: <b>{{device.address.mac}}</b></p></div>
+        {% endfor %}
+    </body>
+</html>
