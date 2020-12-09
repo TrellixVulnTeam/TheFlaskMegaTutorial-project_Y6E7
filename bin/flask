@@ -1,4 +1,4 @@
-#!/home/geexmmo/Code/grandstream-provision-panel/bin/python
+#!/home/geexmmo/Code/grandstream-provision-tool/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
