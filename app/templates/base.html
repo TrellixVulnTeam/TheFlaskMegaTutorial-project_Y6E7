@@ -9,7 +9,11 @@
     <body>
         <div>
         {% for link in links %}
+            {% if link.class == 'logout' %}
+            <a href="{{ url_for(link.class | default('index')) }}">{{ link.name }} ( <b>{{ current_user.username }}</b> ) | </a>
+            {% else %}
             <a href="{{ url_for(link.class | default('index')) }}">{{ link.name }}</a>
+            {% endif %}
         {% endfor -%}
         </div>
         <hr>

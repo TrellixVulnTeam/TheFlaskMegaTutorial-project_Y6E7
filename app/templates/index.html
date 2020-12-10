@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% if user %}
-    <h1>Hello, {{ user.username }}!</h1>
-    {% else %}
-    <h1>Hello, unknown user?!</h1>
-    {% endif %}
+    <h1>Hello, {{ current_user.username }}!</h1>
 
     {% for device in devices %}
     <div><p>number: {{device.number}} mac: <b>{{device.address.mac}}</b></p></div>
+    {% endfor %}
+    {% for post in posts %}
+    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
     {% endfor %}
 {% endblock %}
