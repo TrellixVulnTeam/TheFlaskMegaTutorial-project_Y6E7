@@ -37,3 +37,7 @@ AttributeError: 'BaseQuery' object has no attribute 'firt'
 2020-12-21 17:50:23,700 INFO: App startup... [in /home/geexmmo/Code/grandstream-provision-tool/app/__init__.py:28]
 2020-12-21 17:50:49,856 INFO: App startup... [in /home/geexmmo/Code/grandstream-provision-tool/app/__init__.py:28]
 2020-12-21 17:53:58,802 INFO: App startup... [in /home/geexmmo/Code/grandstream-provision-tool/app/__init__.py:28]
+2020-12-28 16:33:30,381 INFO: App startup... [in /home/geexmmo/Code/grandstream-provision-tool/app/__init__.py:28]
+2020-12-28 16:34:01,333 INFO: App startup... [in /home/geexmmo/Code/grandstream-provision-tool/app/__init__.py:28]
+2020-12-28 16:34:14,578 INFO: App startup... [in /home/geexmmo/Code/grandstream-provision-tool/app/__init__.py:28]
+2020-12-28 17:07:00,518 INFO: App startup... [in /home/geexmmo/Code/grandstream-provision-tool/app/__init__.py:28]
