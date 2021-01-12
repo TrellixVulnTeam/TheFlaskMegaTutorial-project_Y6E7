@@ -6,6 +6,19 @@ from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm
 from werkzeug.urls import url_parse
 from datetime import datetime
 
+links = [
+    {'name':'Logout','class':'logout'},
+    {'name':'Index', 'class':'index'},
+    {'name':'Add','class':'inprogress'},
+    {'name':'Poop','class':'inprogress'},
+    {'name':'Le booze','class':'inprogress'},
+    {'name':'List','class':'index'}
+]
+devices = [
+    {'number':'1001','address':{'mac':'DE:AD:BE:EF:FF'}},
+    {'number':'1002','address':{'mac':'FF:FE:EB:DA:ED'}},
+    {'number':'1003','address':{'mac':'FF:FF:EE:FF:FF'}}]
+
 @app.before_request
 def before_request():
         if current_user.is_authenticated:
@@ -27,7 +40,7 @@ def login():
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('index')
         return redirect(next_page)
-    return render_template('login.html', title='Login', form=form)
+    return render_template('login.html', title='Login', form=form, links=links)
 
 @app.route('/register', methods=['GET','POST'])
 def register():
@@ -41,7 +54,7 @@ def register():
         db.session.commit()
         flash('Congradulations, you are now a registred user!')
         return redirect(url_for('login'))
-    return render_template('register.html', title='Register', form=form)
+    return render_template('register.html', title='Register', form=form, links=links)
 
 @app.route('/logout')
 def logout():
@@ -56,23 +69,13 @@ def user(username):
         {'author': user, 'body': 'Test post 1'},
         {'author': user, 'body': 'Test post 2'}
     ]
-    return render_template('user.html', user=user, posts=posts)
+    form = EmptyForm()
+    return render_template('user.html', user=user, posts=posts, form=form, links=links)
 
 @app.route('/')
 @app.route('/index')
 @login_required
 def index():
-    links = [
-        {'name':'Logout','class':'logout'},
-        {'name':'Add','class':'inprogress'},
-        {'name':'Poop','class':'inprogress'},
-        {'name':'Le booze','class':'inprogress'},
-        {'name':'List','class':'index'}
-    ]
-    devices = [
-        {'number':'1001','address':{'mac':'DE:AD:BE:EF:FF'}},
-        {'number':'1002','address':{'mac':'FF:FE:EB:DA:ED'}},
-        {'number':'1003','address':{'mac':'FF:FF:EE:FF:FF'}}]
     return render_template('index.html', title='Home', links=links, devices=devices)
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
@@ -132,4 +135,4 @@ def unfollow(username):
 
 @app.route('/inprogress')
 def inprogress():
-    return render_template('inprogress.html')
+    return render_template('inprogress.html', links=links)
