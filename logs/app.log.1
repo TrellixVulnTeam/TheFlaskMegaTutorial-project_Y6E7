@@ -1,5 +1,4 @@
-2020-12-21 15:23:07,051 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2020-12-21 15:23:09,567 ERROR: Exception on /edit_profile [POST] [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py:1891]
+2021-01-14 14:34:54,173 ERROR: Exception on /index [GET] [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -15,36 +14,11 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/routes.py", line 82, in edit_profile
-    if form.validate_on_submit():
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask_wtf/form.py", line 100, in validate_on_submit
-    return self.is_submitted() and self.validate()
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/wtforms/form.py", line 318, in validate
-    return super(Form, self).validate(extra)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/wtforms/form.py", line 150, in validate
-    if not field.validate(self, extra):
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/wtforms/fields/core.py", line 226, in validate
-    stop_validation = self._run_validation_chain(form, chain)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/wtforms/fields/core.py", line 246, in _run_validation_chain
-    validator(form, self)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/forms.py", line 40, in validate_username
-    user = User.query.filter_by(username = self.username.data).firt()
-AttributeError: 'BaseQuery' object has no attribute 'firt'
-2020-12-21 15:23:23,220 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2020-12-21 17:37:19,000 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2020-12-21 17:38:08,783 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2020-12-21 17:39:03,668 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2020-12-21 17:50:23,700 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2020-12-21 17:50:49,856 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2020-12-21 17:53:58,802 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2020-12-28 16:33:30,381 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2020-12-28 16:34:01,333 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2020-12-28 16:34:14,578 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2020-12-28 17:07:00,518 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2021-01-12 22:20:19,715 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2021-01-12 22:20:21,959 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2021-01-13 01:07:35,799 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2021-01-13 01:07:48,563 ERROR: Exception on /user/test1 [GET] [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py:1891]
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/routes.py", line 86, in index
+    return render_template('index.html', title='Home', links=links, devices=devices, form=form, posts=posts)
+NameError: name 'posts' is not defined
+2021-01-14 14:35:35,062 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2021-01-14 14:35:37,171 ERROR: Exception on /index [GET] [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -60,48 +34,64 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/routes.py", line 60, in user
-    return render_template('user.html', user=user, posts=posts, form=form)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/templating.py", line 138, in render_template
-    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/jinja2/environment.py", line 930, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/jinja2/environment.py", line 883, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/jinja2/environment.py", line 857, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/jinja2/loaders.py", line 127, in load
-    code = environment.compile(source, name, filename)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/jinja2/environment.py", line 638, in compile
-    self.handle_exception(source=source_hint)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/routes.py", line 86, in index
+    return render_template('index.html', title='Home', links=links, devices=devices, form=form, posts=posts)
+UnboundLocalError: local variable 'posts' referenced before assignment
+2021-01-14 14:36:07,005 ERROR: Exception on / [GET] [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/routes.py", line 86, in index
+    return render_template('index.html', title='Home', links=links, devices=devices, form=form, posts=posts)
+UnboundLocalError: local variable 'posts' referenced before assignment
+2021-01-14 14:38:15,606 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2021-01-14 15:01:37,586 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2021-01-14 15:01:42,719 ERROR: Exception on /explore [GET] [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/routes.py", line 98, in explore
+    return render_template('index.html', title='Explore', posts=posts)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/jinja2/environment.py", line 832, in handle_exception
     reraise(*rewrite_traceback_stack(source=source))
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/jinja2/_compat.py", line 28, in reraise
     raise value.with_traceback(tb)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/user.html", line 16, in template
-    {{ form.hidden_tag() }
-jinja2.exceptions.TemplateSyntaxError: unexpected '}'
-2021-01-13 01:08:30,243 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2021-01-13 01:11:57,266 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2021-01-13 01:13:17,983 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2021-01-13 01:14:32,798 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2021-01-13 01:14:34,396 ERROR: Exception on /inprogress [GET] [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/routes.py", line 136, in inprogress
-    return render_template('inprogress.html', links=links)
-NameError: name 'links' is not defined
-2021-01-13 01:15:34,166 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2021-01-13 01:16:16,037 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2021-01-13 01:26:10,662 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/base.html", line 33, in top-level template code
+    {% block content %}{% endblock %}
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/index.html", line 22, in block "content"
+    {% include '_post.html' %}
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/_post.html", line 3, in top-level template code
+    <td><img src="{{ post.author.avatar(36) }}"></td>
+jinja2.exceptions.UndefinedError: 'None' has no attribute 'avatar'

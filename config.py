@@ -14,3 +14,5 @@ class Config(object):
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     # ... mail_to
     MAIL_ADMIN = os.environ.get('MAIL_ADMIN') or ['admin@example.com']
+    # ... Pagination
+    POSTS_PER_PAGE=3

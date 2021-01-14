@@ -1,14 +1,5 @@
-2020-12-21 14:56:35,710 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2020-12-21 14:56:57,814 ERROR: Exception on /edit_profile [POST] [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
-    self.dialect.do_execute(
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-sqlite3.IntegrityError: UNIQUE constraint failed: user.username
-
-The above exception was the direct cause of the following exception:
-
+2020-12-21 15:23:07,051 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2020-12-21 15:23:09,567 ERROR: Exception on /edit_profile [POST] [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -24,51 +15,93 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/routes.py", line 85, in edit_profile
-    db.session.commit()
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/orm/scoping.py", line 163, in do
-    return getattr(self.registry(), name)(*args, **kwargs)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1042, in commit
-    self.transaction.commit()
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 504, in commit
-    self._prepare_impl()
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 483, in _prepare_impl
-    self.session.flush()
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2536, in flush
-    self._flush(objects)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2678, in _flush
-    transaction.rollback(_capture_exception=True)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
-    compat.raise_(
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
-    raise exception
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2638, in _flush
-    flush_context.execute()
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 422, in execute
-    rec.execute(self)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 586, in execute
-    persistence.save_obj(
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 230, in save_obj
-    _emit_update_statements(
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 994, in _emit_update_statements
-    c = cached_connections[connection].execute(
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1011, in execute
-    return meth(self, multiparams, params)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1124, in _execute_clauseelement
-    ret = self._execute_context(
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
-    self._handle_dbapi_exception(
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
-    util.raise_(
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
-    raise exception
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
-    self.dialect.do_execute(
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: user.username
-[SQL: UPDATE user SET username=?, about_me=? WHERE user.id = ?]
-[parameters: ('geexmmo', '', 4)]
-(Background on this error at: http://sqlalche.me/e/13/gkpj)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/routes.py", line 82, in edit_profile
+    if form.validate_on_submit():
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask_wtf/form.py", line 100, in validate_on_submit
+    return self.is_submitted() and self.validate()
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/wtforms/form.py", line 318, in validate
+    return super(Form, self).validate(extra)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/wtforms/form.py", line 150, in validate
+    if not field.validate(self, extra):
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/wtforms/fields/core.py", line 226, in validate
+    stop_validation = self._run_validation_chain(form, chain)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/wtforms/fields/core.py", line 246, in _run_validation_chain
+    validator(form, self)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/forms.py", line 40, in validate_username
+    user = User.query.filter_by(username = self.username.data).firt()
+AttributeError: 'BaseQuery' object has no attribute 'firt'
+2020-12-21 15:23:23,220 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2020-12-21 17:37:19,000 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2020-12-21 17:38:08,783 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2020-12-21 17:39:03,668 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2020-12-21 17:50:23,700 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2020-12-21 17:50:49,856 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2020-12-21 17:53:58,802 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2020-12-28 16:33:30,381 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2020-12-28 16:34:01,333 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2020-12-28 16:34:14,578 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2020-12-28 17:07:00,518 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2021-01-12 22:20:19,715 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2021-01-12 22:20:21,959 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2021-01-13 01:07:35,799 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2021-01-13 01:07:48,563 ERROR: Exception on /user/test1 [GET] [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/routes.py", line 60, in user
+    return render_template('user.html', user=user, posts=posts, form=form)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/jinja2/environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/jinja2/environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/jinja2/environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/jinja2/loaders.py", line 127, in load
+    code = environment.compile(source, name, filename)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/jinja2/environment.py", line 638, in compile
+    self.handle_exception(source=source_hint)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/user.html", line 16, in template
+    {{ form.hidden_tag() }
+jinja2.exceptions.TemplateSyntaxError: unexpected '}'
+2021-01-13 01:08:30,243 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2021-01-13 01:11:57,266 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2021-01-13 01:13:17,983 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2021-01-13 01:14:32,798 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2021-01-13 01:14:34,396 ERROR: Exception on /inprogress [GET] [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/routes.py", line 136, in inprogress
+    return render_template('inprogress.html', links=links)
+NameError: name 'links' is not defined
+2021-01-13 01:15:34,166 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2021-01-13 01:16:16,037 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2021-01-13 01:26:10,662 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
