@@ -4,4 +4,6 @@ email-validator
 flask-login
 flask-sqlalchemy
 flask-migrate
+flask-mail
+pyjwt
 python-dotenv
