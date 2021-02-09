@@ -1,5 +1,5 @@
 FLASK_APP=provision.py
-#FLASK_DEBUG=1
+FLASK_DEBUG=1
 MAIL_SERVER=localhost
 MAIL_PORT=8025
-#MAIL_ADMIN=ha@ha.he
+MAIL_ADMIN=ha@ha.he

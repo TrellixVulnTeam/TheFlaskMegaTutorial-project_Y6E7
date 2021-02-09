@@ -64,7 +64,7 @@ class User(UserMixin, db.Model):
             app.config['SECRET_KEY'], algorithm='HS256')
 
     @staticmethod
-    def verity_reset_password_token(token):
+    def verify_reset_password_token(token):
         try: 
             id = jwt.decode(token, app.config['SECRET_KEY'],
                 algorithms=['HS256'])['reset_password']

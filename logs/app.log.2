@@ -1,6 +1,4 @@
-2021-01-14 22:57:11,296 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2021-01-14 22:59:23,258 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2021-01-14 22:59:29,064 ERROR: Exception on /explore [GET] [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py:1891]
+2021-01-14 23:35:45,271 ERROR: Exception on /user/user2 [GET] [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -16,8 +14,8 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/routes.py", line 108, in explore
-    return render_template('index.html', title='Explore', posts=posts.items,
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/routes.py", line 111, in user
+    return render_template('user.html', user=user, posts=posts,
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/templating.py", line 137, in render_template
     return _render(
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/templating.py", line 120, in _render
@@ -28,16 +26,22 @@ Traceback (most recent call last):
     reraise(*rewrite_traceback_stack(source=source))
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/jinja2/_compat.py", line 28, in reraise
     raise value.with_traceback(tb)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/index.html", line 1, in top-level template code
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/user.html", line 1, in top-level template code
     {% extends "base.html" %}
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/base.html", line 33, in top-level template code
     {% block content %}{% endblock %}
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/index.html", line 22, in block "content"
-    {% include '_post.html' %}
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/_post.html", line 3, in top-level template code
-    <td><img src="{{ post.author.avatar(36) }}"></td>
-jinja2.exceptions.UndefinedError: 'None' has no attribute 'avatar'
-2021-01-14 22:59:46,466 ERROR: Exception on /explore [GET] [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py:1891]
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/user.html", line 32, in block "content"
+    {% for post in posts %}
+TypeError: 'Pagination' object is not iterable
+2021-01-14 23:36:24,426 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2021-01-14 23:36:27,368 ERROR: Exception on /user/user2 [GET] [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/orm/attributes.py", line 229, in __getattr__
+    return getattr(self.comparator, key)
+AttributeError: 'Comparator' object has no attribute 'order_by'
+
+The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -53,28 +57,15 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/routes.py", line 108, in explore
-    return render_template('index.html', title='Explore', posts=posts.items,
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/templating.py", line 137, in render_template
-    return _render(
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/templating.py", line 120, in _render
-    rv = template.render(context)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/jinja2/environment.py", line 1090, in render
-    self.environment.handle_exception()
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/jinja2/environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/jinja2/_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/index.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/base.html", line 33, in top-level template code
-    {% block content %}{% endblock %}
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/index.html", line 22, in block "content"
-    {% include '_post.html' %}
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/_post.html", line 3, in top-level template code
-    <td><img src="{{ post.author.avatar(36) }}"></td>
-jinja2.exceptions.UndefinedError: 'None' has no attribute 'avatar'
-2021-01-14 23:00:17,463 ERROR: Exception on /explore [GET] [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py:1891]
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/routes.py", line 104, in user
+    posts = User.posts.order_by(Post.timestamp.desc()).paginate(
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/orm/attributes.py", line 231, in __getattr__
+    util.raise_(
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+AttributeError: Neither 'InstrumentedAttribute' object nor 'Comparator' object associated with User.posts has an attribute 'order_by'
+2021-01-14 23:36:56,976 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2021-01-14 23:36:57,919 ERROR: Exception on /user/user2 [GET] [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -90,8 +81,28 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/routes.py", line 108, in explore
-    return render_template('index.html', title='Explore', posts=posts.items,
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/routes.py", line 104, in user
+    posts = Post.posts.order_by(Post.timestamp.desc()).paginate(
+AttributeError: type object 'Post' has no attribute 'posts'
+2021-01-14 23:37:25,400 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+2021-01-14 23:37:28,518 ERROR: Exception on /user/user2 [GET] [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/routes.py", line 111, in user
+    return render_template('user.html', user=user, posts=posts,
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/templating.py", line 137, in render_template
     return _render(
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/flask/templating.py", line 120, in _render
@@ -102,16 +113,10 @@ Traceback (most recent call last):
     reraise(*rewrite_traceback_stack(source=source))
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/lib/python3.9/site-packages/jinja2/_compat.py", line 28, in reraise
     raise value.with_traceback(tb)
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/index.html", line 1, in top-level template code
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/user.html", line 1, in top-level template code
     {% extends "base.html" %}
   File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/base.html", line 33, in top-level template code
     {% block content %}{% endblock %}
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/index.html", line 22, in block "content"
-    {% include '_post.html' %}
-  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/_post.html", line 3, in top-level template code
-    <td><img src="{{ post.author.avatar(36) }}"></td>
-jinja2.exceptions.UndefinedError: 'None' has no attribute 'avatar'
-2021-01-14 23:02:08,844 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2021-01-14 23:03:00,558 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2021-01-14 23:15:06,446 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
-2021-01-14 23:35:42,738 INFO: App startup... [in /home/geexmmo/Code/TheFlaskMegaTutorial-project/app/__init__.py:28]
+  File "/home/geexmmo/Code/TheFlaskMegaTutorial-project/app/templates/user.html", line 32, in block "content"
+    {% for post in posts %}
+TypeError: 'Pagination' object is not iterable
