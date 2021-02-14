@@ -54,7 +54,7 @@ def register():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash('Congradulations, you are now a registred user!')
+        flash('Congratulations, you are now a registred user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form, links=links)
 
@@ -155,7 +155,7 @@ def edit_profile():
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.about_me.data = current_user.about_me
-    return render_template('edit_profile.html', title='Edit Profile', form=form)
+    return render_template('edit_profile.html', title='Edit Profile', form=form, links=links)
 
 @app.route('/follow/<username>', methods=['POST'])
 @login_required

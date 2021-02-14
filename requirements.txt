@@ -7,3 +7,4 @@ flask-migrate
 flask-mail
 pyjwt
 python-dotenv
+flask-bootstrap
