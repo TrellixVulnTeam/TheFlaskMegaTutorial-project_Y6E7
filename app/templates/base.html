@@ -4,6 +4,11 @@
     {% if title %}{{ title }} - Grandsteram configuration tool{% else %}Grandsteram configuration tool{% endif %}
 {% endblock %}
 
+{% block scripts %}
+    {{ super() }}
+    {{ moment.include_moment() }}
+{% endblock %}
+
 {% block navbar %}
     <nav class="navbar navbar-default">
         <div class="container">
