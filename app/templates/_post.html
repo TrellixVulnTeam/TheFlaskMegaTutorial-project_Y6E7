@@ -6,10 +6,17 @@
             </a>
         </td>
         <td>
-            {% if post.author.username != current_user.username %}
+            {% set user_link %}
             <a href="{{ url_for('user', username=post.author.username) }}">{{ post.author.username }}</a>
-            said {% else %}
-            <a href="{{ url_for('user', username=post.author.username) }}">You</a> said {% endif %}
+            {% endset %}
+
+            {% if post.author.username != current_user.username %}
+            <!-- {{ _('%(username) said', username=user_link) }} -->
+            boop
+            {% else %}
+            <!-- {{ _('%(username) You said', username=user_link) }} -->
+            poop
+            {% endif %}
             {{ moment(post.timestamp).fromNow() }}:
             <br>
             {{ post.body }}

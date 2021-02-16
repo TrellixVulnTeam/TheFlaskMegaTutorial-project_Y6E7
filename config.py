@@ -16,3 +16,6 @@ class Config(object):
     MAIL_ADMIN = os.environ.get('MAIL_ADMIN') or ['admin@example.com']
     # ... Pagination
     POSTS_PER_PAGE=3
+
+    #Babel
+    LANGUAGES=['en','ru']

@@ -9,3 +9,4 @@ pyjwt
 python-dotenv
 flask-bootstrap
 flask-moment
+flask-babel

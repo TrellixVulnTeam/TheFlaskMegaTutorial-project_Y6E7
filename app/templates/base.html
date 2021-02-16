@@ -1,12 +1,13 @@
 {% extends "bootstrap/base.html" %}
 
 {% block title %}
-    {% if title %}{{ title }} - Grandsteram configuration tool{% else %}Grandsteram configuration tool{% endif %}
+    {% if title %}{{ title }} - {{ _('Grandsteram configuration tool') }}{% else %}{{ _('Grandsteram configuration tool') }}{% endif %}
 {% endblock %}
 
 {% block scripts %}
     {{ super() }}
     {{ moment.include_moment() }}
+    {{ moment.lang(g.locale) }}
 {% endblock %}
 
 {% block navbar %}
@@ -26,7 +27,7 @@
                 {% if link.class == 'logout' %}
                     {% if not current_user.is_authenticated %}
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{{ url_for('login') }}">Sign In</a></li>
+                        <li><a href="{{ url_for('login') }}">{{ _('Sign In') }}</a></li>
                     </ul>
                     {% else %}
                     <ul class="nav navbar-nav navbar-right">
