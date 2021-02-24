@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-16 22:39+0600\n"
-"PO-Revision-Date: 2021-02-16 22:29+0600\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2021-02-24 23:36+0600\n"
+"PO-Revision-Date: 2021-02-24 23:35+0600\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
 "Language-Team: ru <LL@li.org>\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
@@ -21,202 +21,242 @@ msgstr ""
 
 #: app/__init__.py:23
 msgid "Please log in to access this page."
-msgstr "Войдите в свою учетную запись для просмотра этой страницы."
+msgstr ""
+
+#: app/email.py:16 app/templates/reset_password.html:5
+msgid "Reset your password"
+msgstr ""
 
 #: app/forms.py:10 app/forms.py:16 app/forms.py:42
 msgid "Username"
-msgstr "Имя"
+msgstr ""
 
 #: app/forms.py:11 app/forms.py:18 app/forms.py:37
 msgid "Password"
-msgstr "Пароль"
+msgstr ""
 
 #: app/forms.py:12
 msgid "Remember me"
-msgstr "Запомнить меня"
+msgstr ""
 
 #: app/forms.py:13
 msgid "Sign in"
-msgstr "Вход"
+msgstr ""
 
 #: app/forms.py:17 app/forms.py:33
 msgid "Email"
-msgstr "Имеиел"
+msgstr ""
 
 #: app/forms.py:19
 msgid "Repeat password"
-msgstr "Повтор пароля"
+msgstr ""
 
-#: app/forms.py:20 app/templates/register.html:5
+#: app/forms.py:20 app/routes.py:61 app/templates/register.html:5
 msgid "Register"
-msgstr "Зарегистрироваться"
+msgstr ""
 
 #: app/forms.py:25
 msgid "Please use diffirent username."
-msgstr "Используйте другое имя."
+msgstr ""
 
 #: app/forms.py:30
 msgid "Please use different email-address"
-msgstr "Используйте другой ебмейл"
+msgstr ""
 
 #: app/forms.py:34 app/forms.py:39
 msgid "Request password reset"
-msgstr "Запрос сброса пароля"
+msgstr ""
 
 #: app/forms.py:38
 msgid "Repeat passowrd"
-msgstr "Пароль повторно"
+msgstr ""
 
 #: app/forms.py:43
 msgid "About me"
-msgstr "Обо мне"
+msgstr ""
 
 #: app/forms.py:44 app/forms.py:58 app/forms.py:61
 msgid "Submit"
-msgstr "Отправить"
+msgstr ""
 
 #: app/forms.py:54
 msgid "Please use a different username"
-msgstr "Используйте другое имя"
+msgstr ""
 
 #: app/forms.py:57
 msgid "Say something"
-msgstr "Скажи что-нибудь"
+msgstr ""
 
-#: app/routes.py:42
+#: app/routes.py:12
+msgid "Logout"
+msgstr ""
+
+#: app/routes.py:13
+msgid "Index"
+msgstr ""
+
+#: app/routes.py:14 app/routes.py:129
+msgid "Explore"
+msgstr ""
+
+#: app/routes.py:15
+msgid "Add"
+msgstr ""
+
+#: app/routes.py:16
+msgid "Poop"
+msgstr ""
+
+#: app/routes.py:17
+msgid "Le booze"
+msgstr ""
+
+#: app/routes.py:18
+msgid "List"
+msgstr ""
+
+#: app/routes.py:40
 msgid "Invalid username or password"
-msgstr "Неправильное имя или пароль"
+msgstr ""
 
-#: app/routes.py:61
+#: app/routes.py:47
+msgid "Login"
+msgstr ""
+
+#: app/routes.py:59
 msgid "Congratulations, you are now a registred user!"
-msgstr "Поздравляю, ты зарегистрированный пользователь!"
+msgstr ""
 
-#: app/routes.py:76
+#: app/routes.py:74
 msgid "Check your email for the instructions to reset your password"
-msgstr "Проверь почту для инструкций по восстановлению пароля"
+msgstr ""
 
-#: app/routes.py:91
+#: app/routes.py:76 app/templates/reset_password_request.html:6
+msgid "Reset Password"
+msgstr ""
+
+#: app/routes.py:89
 msgid "Your password has been reset"
-msgstr "Твой пароль был сброшен"
+msgstr ""
 
-#: app/routes.py:110
+#: app/routes.py:108
 msgid "Your post is now live!"
-msgstr "Сообщение отправлено!"
+msgstr ""
 
-#: app/routes.py:157
+#: app/routes.py:115
+msgid "Home"
+msgstr ""
+
+#: app/routes.py:155
 msgid "Your changes have been saved."
-msgstr "Изменения сохранены."
+msgstr ""
 
-#: app/routes.py:171 app/routes.py:191
-msgid "User %(username) not found."
-msgstr "Пользователь %(username) не найден."
+#: app/routes.py:160 app/templates/edit_profile.html:4
+msgid "Edit Profile"
+msgstr ""
 
-#: app/routes.py:174
+#: app/routes.py:169 app/routes.py:189
+#, python-format
+msgid "User %(username)s not found."
+msgstr ""
+
+#: app/routes.py:172
 msgid "You cannot follow yourself."
-msgstr "Нельзя следовать за собой."
+msgstr ""
 
-#: app/routes.py:179
-msgid "You are following %(username)."
-msgstr "Ты следуешь за %(username)."
+#: app/routes.py:177
+#, python-format
+msgid "You are following %(username)s."
+msgstr ""
 
-#: app/routes.py:194
+#: app/routes.py:192
 msgid "You cannot unfollow yourself."
-msgstr "Нельзя перестать себя приследовать."
+msgstr ""
 
-#: app/routes.py:199
-msgid "Your are now following %(username)"
-msgstr "Теперь ты следуешь за %(username)"
+#: app/routes.py:197
+#, python-format
+msgid "Your are now following %(username)s"
+msgstr ""
 
 #: app/templates/404.html:4
 msgid "File Not Found"
-msgstr "Файл не найден 404"
+msgstr ""
 
 #: app/templates/500.html:4
 msgid "An unexpected error has occurred"
-msgstr "Непонятная ошибка, непонятно"
+msgstr ""
 
 #: app/templates/500.html:5
 msgid "The administrator has not been notified. Sorry for the inconvenience!"
-msgstr "Администратор не был проинформирован, сожалею что так вышло!"
+msgstr ""
 
 #: app/templates/_post.html:14
 #, python-format
-msgid "%(username) said"
-msgstr "%(username) сказал."
+msgid "%(username)s said"
+msgstr ""
 
-#: app/templates/_post.html:17
-msgid "%(username) You said"
-msgstr "%(username) - Ты сказал"
+#: app/templates/_post.html:16
+#, python-format
+msgid "%(username)s You said"
+msgstr ""
 
 #: app/templates/base.html:4
 msgid "Grandsteram configuration tool"
-msgstr "Grandstream провижн тул"
+msgstr ""
 
 #: app/templates/base.html:30 app/templates/login.html:5
 msgid "Sign In"
-msgstr "Вход"
-
-#: app/templates/edit_profile.html:4
-msgid "Edit Profile"
-msgstr "Изменить профиль"
+msgstr ""
 
 #: app/templates/index.html:5
 msgid "Hello"
-msgstr "Приве"
+msgstr ""
 
 #: app/templates/index.html:12
 msgid "number"
-msgstr "номер"
+msgstr ""
 
 #: app/templates/index.html:12
 msgid "mac"
-msgstr "мак"
+msgstr ""
 
 #: app/templates/index.html:23 app/templates/user.html:40
 msgid "Newer posts"
-msgstr "Новые сообщения"
+msgstr ""
 
 #: app/templates/index.html:28 app/templates/user.html:45
 msgid "Older posts"
-msgstr "Старые сообщения"
+msgstr ""
 
 #: app/templates/inprogress.html:4
 msgid "not implemented yet"
-msgstr "никто еще не придумал что тут можно сделать"
+msgstr ""
 
 #: app/templates/login.html:12
 msgid "New User?"
-msgstr "Новый пользователь?"
+msgstr ""
 
 #: app/templates/login.html:13
 msgid "Forgot password?"
-msgstr "Забыл пароль?"
-
-#: app/templates/reset_password.html:5
-msgid "Reset your password"
-msgstr "Сбрось свой пароль"
-
-#: app/templates/reset_password_request.html:6
-msgid "Reset Password"
-msgstr "Сброс пароля"
+msgstr ""
 
 #: app/templates/user.html:8
 msgid "User"
-msgstr "Пользователь"
+msgstr ""
 
 #: app/templates/user.html:10
 msgid "Last seen on"
-msgstr "Был активен"
+msgstr ""
 
 #: app/templates/user.html:11
 msgid "followers"
-msgstr "последователи"
+msgstr ""
 
 #: app/templates/user.html:11
 msgid "following"
-msgstr "следует"
+msgstr ""
 
 #: app/templates/user.html:13
 msgid "Edit your profile"
-msgstr "Изменить твой профельб"
+msgstr ""
 

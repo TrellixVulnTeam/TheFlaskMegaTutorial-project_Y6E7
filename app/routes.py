@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, g
 from flask_login import current_user, login_user, logout_user, login_required
 from app import app, db
 from app.models import User, Post
@@ -6,18 +6,16 @@ from app.email import send_password_reset_email
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm, PostForm, ResetPasswordRequestForm, ResetPasswordForm
 from werkzeug.urls import url_parse
 from datetime import datetime
-from flask_babel import _
-from flask import g
-from flask_babel import get_locale
+from flask_babel import _, get_locale
 
 links = [
-    {'name':'Logout','class':'logout'},
-    {'name':'Index', 'class':'index'},
-    {'name':'Explore','class':'explore'},
-    {'name':'Add','class':'inprogress'},
-    {'name':'Poop','class':'inprogress'},
-    {'name':'Le booze','class':'inprogress'},
-    {'name':'List','class':'index'}
+    {'name':_('Logout'),'class':'logout'},
+    {'name':_('Index'), 'class':'index'},
+    {'name':_('Explore'),'class':'explore'},
+    {'name':_('Add'),'class':'inprogress'},
+    {'name':_('Poop'),'class':'inprogress'},
+    {'name':_('Le booze'),'class':'inprogress'},
+    {'name':_('List'),'class':'index'}
 ]
 devices = [
     {'number':'1001','address':{'mac':'DE:AD:BE:EF:FF'}},
@@ -46,7 +44,7 @@ def login():
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('index')
         return redirect(next_page)
-    return render_template('login.html', title='Login', form=form, links=links)
+    return render_template('login.html', title=_('Login'), form=form, links=links)
 
 @app.route('/register', methods=['GET','POST'])
 def register():
@@ -60,7 +58,7 @@ def register():
         db.session.commit()
         flash(_('Congratulations, you are now a registred user!'))
         return redirect(url_for('login'))
-    return render_template('register.html', title='Register', form=form, links=links)
+    return render_template('register.html', title=_('Register'), form=form, links=links)
 
 @app.route('/reset_password_request', methods=['GET', 'POST'])
 def reset_password_request():
@@ -75,7 +73,7 @@ def reset_password_request():
             send_password_reset_email(user)
         flash(_('Check your email for the instructions to reset your password'))
         return redirect(url_for('login'))
-    return render_template('reset_password_request.html', title='Reset Password', form=form, links=links)
+    return render_template('reset_password_request.html', title=_('Reset Password'), form=form, links=links)
 
 @app.route('/reset_password/<token>', methods=['GET','POST'])
 def reset_password(token):
@@ -114,7 +112,7 @@ def index():
         if posts.has_next else None
     prev_url = url_for('index', page=posts.prev_num) \
         if posts.has_prev else None
-    return render_template('index.html', title='Home', links=links,
+    return render_template('index.html', title=_('Home'), links=links,
         devices=devices, form=form,
         posts=posts.items, next_url=next_url,
         prev_url=prev_url)
@@ -128,7 +126,7 @@ def explore():
         if posts.has_next else None
     prev_url = url_for('explore', page=posts.prev_num) \
         if posts.has_prev else None
-    return render_template('index.html', title='Explore', links=links,
+    return render_template('index.html', title=_('Explore'), links=links,
         posts=posts.items, next_url=next_url, prev_url=prev_url)
 
 @app.route('/user/<username>')
@@ -159,7 +157,7 @@ def edit_profile():
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.about_me.data = current_user.about_me
-    return render_template('edit_profile.html', title='Edit Profile', form=form, links=links)
+    return render_template('edit_profile.html', title=_('Edit Profile'), form=form, links=links)
 
 @app.route('/follow/<username>', methods=['POST'])
 @login_required
@@ -168,7 +166,7 @@ def follow(username):
     if form.validate_on_submit():
         user = User.query.filter_by(username=username).first()
         if user is None:
-            flash(_('User %(username) not found.', username=username))
+            flash(_('User %(username)s not found.', username=username))
             return redirect(url_for('index'))
         if user == current_user:
             flash(_('You cannot follow yourself.'))
@@ -176,7 +174,7 @@ def follow(username):
             
         current_user.follow(user)
         db.session.commit()
-        flash(_('You are following %(username).', username=username))
+        flash(_('You are following %(username)s.', username=username))
         return redirect(url_for('user', username=username))
     else:
         return redirect(url_for('index'))
@@ -188,7 +186,7 @@ def unfollow(username):
     if form.validate_on_submit():
         user = User.query.filter_by(username=username).first()
         if user is None:
-            flash(_('User %(username) not found.', username=username))
+            flash(_('User %(username)s not found.', username=username))
             return redirect(url_for('index'))
         if user == current_user:
             flash(_('You cannot unfollow yourself.'))
@@ -196,7 +194,7 @@ def unfollow(username):
 
         current_user.unfollow(user)
         db.session.commit()
-        flash(_('Your are now following %(username)', username=username))
+        flash(_('Your are now following %(username)s', username=username))
         return redirect(url_for('user', username=username))
     else:
         return redirect(url_for('index'))

@@ -11,11 +11,9 @@
             {% endset %}
 
             {% if post.author.username != current_user.username %}
-            <!-- {{ _('%(username) said', username=user_link) }} -->
-            boop
+            {{ _('%(username)s said', username=user_link) }}
             {% else %}
-            <!-- {{ _('%(username) You said', username=user_link) }} -->
-            poop
+            {{ _('%(username)s You said', username=user_link) }}
             {% endif %}
             {{ moment(post.timestamp).fromNow() }}:
             <br>
