@@ -32,8 +32,8 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale():
-    # return request.accept_languages.best_match(app.config['LANGUAGES'])
-    return 'ru'
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
+    # return 'ru'
 
 if not app.debug:
     if not os.path.exists('logs'):

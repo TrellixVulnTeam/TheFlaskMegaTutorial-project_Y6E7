@@ -1,12 +1,15 @@
-from flask import render_template, flash, redirect, url_for, request, g
+from flask import render_template, flash, redirect, url_for, request, g, jsonify
 from flask_login import current_user, login_user, logout_user, login_required
+import requests
 from app import app, db
 from app.models import User, Post
 from app.email import send_password_reset_email
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm, PostForm, ResetPasswordRequestForm, ResetPasswordForm
+from app.translate import translate
 from werkzeug.urls import url_parse
 from datetime import datetime
 from flask_babel import _, get_locale
+from guess_language import guess_language
 
 links = [
     {'name':_('Logout'),'class':'logout'},
@@ -65,8 +68,6 @@ def reset_password_request():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = ResetPasswordRequestForm()
-    # app.logger.info('TEST %s', form.validate_on_submit())
-    # app.logger.info('TEST %s', form.errors)
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
@@ -102,7 +103,12 @@ def index():
     form = PostForm()
     page = request.args.get('page', 1, type=int)
     if form.validate_on_submit():
-        post = Post(body=form.post.data, author=current_user)
+        app.logger.info('TEST %s', form.post.data)
+        language = guess_language(form.post.data, hints=['en', 'ru'])
+        app.logger.info('lang detected %s', language)
+        if language == 'UNKNOWN' or len(language) > 5:
+            language = ''
+        post = Post(body=form.post.data, author=current_user, language=language)
         db.session.add(post)
         db.session.commit()
         flash(_('Your post is now live!'))
@@ -198,6 +204,13 @@ def unfollow(username):
         return redirect(url_for('user', username=username))
     else:
         return redirect(url_for('index'))
+
+@app.route('/translate', methods=['POST'])
+@login_required
+def translate_text():
+    return jsonify({'text': translate(request.form['text'],
+                                      request.form['source_language'],
+                                      request.form['dest_language'])})
 
 @app.route('/inprogress')
 def inprogress():

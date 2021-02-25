@@ -8,7 +8,7 @@ def translate():
 
 @translate.command()
 def update():
-    """Update all languages"""
+    """Update message.pot for all languages"""
     if os.system('pybabel extract -F babel.cfg -k _l -o messages.pot .'):
         raise RuntimeError('extract command failed')
     if os.system('pybabel update -i messages.pot -d app/translations'):
@@ -17,7 +17,7 @@ def update():
 
 @translate.command()
 def compile():
-    """Compile all languages"""
+    """Compile .pots for all languages"""
     if os.system('pybabel compile -d app/translations'):
         raise RuntimeError('compile command failed')
 

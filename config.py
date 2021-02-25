@@ -19,3 +19,7 @@ class Config(object):
 
     #Babel
     LANGUAGES=['en','ru']
+
+    #MS Azure Translation API
+    MS_TRANSLATOR_APIKEY = os.environ.get('MS_TRANSLATOR_APIKEY')
+    MS_TRANSLATOR_API = os.environ.get('MS_TRANSLATOR_API')
