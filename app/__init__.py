@@ -2,6 +2,8 @@ import logging
 import os
 from logging.handlers import SMTPHandler, RotatingFileHandler
 from flask import Flask, request
+import flask
+from app import errors
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -14,6 +16,12 @@ from flask_babel import lazy_gettext as _l
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
+from app.errors import bp as errors_bp
+app.register_blueprint(errors_bp)
+
+from app.auth import bp as auth_bp
+app.register_blueprint(auth_bp, url_prefix='/auth')
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -34,6 +42,21 @@ babel = Babel(app)
 def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
     # return 'ru'
+
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.config.from_object(config_class)
+    db.init_app(app)
+    migrate.init_app(app, db)
+    login.init_app(app)
+    mail.init_app(app)
+    bootstrap.init_app(app)
+    moment.init_app(app)
+    babel.init_app(app)
+
+    if not app.debug and not app.testing
+
+    return app
 
 if not app.debug:
     if not os.path.exists('logs'):
@@ -63,4 +86,4 @@ if not app.debug:
     mail_handler.setLevel(logging.ERROR)
     app.logger.addHandler(mail_handler)
 
-from app import routes, models, errors
+from app import routes, models
