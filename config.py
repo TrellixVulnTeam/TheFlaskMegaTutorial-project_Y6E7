@@ -26,3 +26,6 @@ class Config(object):
     #MS Azure Translation API
     MS_TRANSLATOR_APIKEY = os.environ.get('MS_TRANSLATOR_APIKEY')
     MS_TRANSLATOR_API = os.environ.get('MS_TRANSLATOR_API')
+
+    #ElasitcSearch
+    ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
