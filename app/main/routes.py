@@ -10,7 +10,7 @@ from flask_babel import _, get_locale
 from guess_language import guess_language
 
 links = [
-    {'name':_('Logout'),'class':'main.logout'},
+    {'name':_('Logout'),'class':'auth.logout'},
     {'name':_('Index'), 'class':'main.index'},
     {'name':_('Explore'),'class':'main.explore'},
     {'name':_('Add'),'class':'main.inprogress'},
