@@ -1,3 +1,4 @@
+from typing import Text
 from flask import request
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, StringField, TextAreaField
@@ -36,3 +37,7 @@ class SearchForm(FlaskForm):
         if 'csrf_enabled' not in kwargs:
             kwargs['csrf_enabled'] = False
         super(SearchForm, self).__init__(*args, **kwargs)
+
+class MessageForm(FlaskForm):
+    message = TextAreaField(_l('Message'), validators=[DataRequired(), Length(min=0, max=140)])
+    submit = SubmitField(_l('Submit'))

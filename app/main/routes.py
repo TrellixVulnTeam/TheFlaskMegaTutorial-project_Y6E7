@@ -2,8 +2,8 @@ from flask import render_template, flash, redirect, url_for, request, g, jsonify
 from flask_login import current_user, login_required
 from app import db
 from app.main import bp
-from app.models import User, Post
-from app.main.forms import EditProfileForm, EmptyForm, PostForm, SearchForm
+from app.models import User, Post, Message
+from app.main.forms import EditProfileForm, EmptyForm, PostForm, SearchForm, MessageForm
 from app.translate import translate
 from datetime import datetime
 from flask_babel import _, get_locale
@@ -162,6 +162,13 @@ def translate_text():
     return jsonify({'text': translate(request.form['text'],
                                       request.form['source_language'],
                                       request.form['dest_language'])})
+
+@bp.route('/send_message/<recipent>', methods=['GET', 'POST'])
+@login_required
+def send_message(recipent):
+    user = User.query.filter_by(username=recipent).first_or_404()
+    form = MessageForm(author=current_user, recipent=user,
+                        body=form.message.data)
 
 @bp.route('/inprogress')
 def inprogress():
