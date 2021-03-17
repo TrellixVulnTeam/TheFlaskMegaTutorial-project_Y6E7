@@ -1,3 +1,4 @@
+from os import link
 from flask import render_template, flash, redirect, url_for, request, g, jsonify, current_app
 from flask_login import current_user, login_required
 from app import db
@@ -65,7 +66,7 @@ def search():
         if total > page * current_app.config['POSTS_PER_PAGE'] else None
     prev_url = url_for('main.search', q=g.search_form.q.data, page=page - 1) \
         if page > 1 else None
-    return render_template('search.html', title=_('Search'), posts=posts, next_url=next_url, prev_url=prev_url)
+    return render_template('search.html', title=_('Search'), posts=posts, next_url=next_url, prev_url=prev_url, links=links)
 
 @bp.route('/explore')
 @login_required
@@ -163,12 +164,34 @@ def translate_text():
                                       request.form['source_language'],
                                       request.form['dest_language'])})
 
-@bp.route('/send_message/<recipent>', methods=['GET', 'POST'])
+@bp.route('/send_message/<recipient>', methods=['GET', 'POST'])
 @login_required
 def send_message(recipent):
     user = User.query.filter_by(username=recipent).first_or_404()
-    form = MessageForm(author=current_user, recipent=user,
+    form = MessageForm()
+    if form.validate_on_submit():
+        msg = MessageForm(author=current_user, recipent=user,
                         body=form.message.data)
+        db.session.add(msg)
+        db.session.commit()
+        flash(_('Your message has been sent.'))
+        return redirect(url_for('main.user', username=recipent))
+    return render_template('send_message.html', title=_('Send Message'), form=form, recipent=recipent, links=links)
+
+@bp.route('/messages')
+@login_required
+def messages():
+    current_user.last_message_read_time = datetime.utcnow()
+    db.session.commit()
+    page = request.args.get('page', 1, type=int)
+    messages = current_user.messages_recieved.order_by(
+        Message.timestamp.desc()).paginate(
+            page, current_app.config['POSTS_PER_PAGE'], False)
+    next_url = url_for('main.messages', page=messages.next_num) \
+        if messages.has_next else None
+    prev_url = url_for('main.messages', page=messages.prev_num) \
+        if messages.has_prev else None
+    return render_template('messages.html', messages=messages.items, next_url=next_url, prev_url=prev_url, links=links)
 
 @bp.route('/inprogress')
 def inprogress():
