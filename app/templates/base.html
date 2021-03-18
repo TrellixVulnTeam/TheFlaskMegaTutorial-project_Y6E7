@@ -9,6 +9,10 @@
     {{ moment.include_moment() }}
     {{ moment.lang(g.locale) }}
     <script>
+        function set_messages_count(n) {
+            $('message_count').text(n);
+            $('message_count').css('visibility', n ? 'visible' : 'hidden');
+        }
         function translate(sourceElem, destElem, sourceLang, destLang) {
             $(destElem).html("<img src={{ url_for('static', filename='loading.gif') }} height='40'>");
             $.post('/translate', {
@@ -80,7 +84,7 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 {% for link in links %}
-                {% if link.class == 'logout' %}
+                {% if link.class == "auth.logout" %}
                     {% if not current_user.is_authenticated %}
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="{{ url_for('auth.login') }}">{{ _('Sign In') }}</a></li>
@@ -93,6 +97,18 @@
                         </button>
                     </ul>
                     {% endif %}
+                {% elif link.class == "main.messages" %}
+                <li>
+                    <a href="{{ url_for('main.messages') }}">
+                        {{ link.name }}
+                        {% set new_messages = current_user.new_messages() %}
+                        <span id="message_count" class="badge" style="visibility: 
+                        {% if new_messages %}visible 
+                        {% else %}hidden {% endif %};">
+                        {{ new_messages }}
+                        </span>
+                    </a>
+                </li>
                 {% else %}
                 <ul class="nav navbar-nav">
                   <li><a href="{{ url_for(link.class) }}">{{ link.name }}</a></li>

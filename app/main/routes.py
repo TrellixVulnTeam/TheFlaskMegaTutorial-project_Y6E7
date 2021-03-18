@@ -14,6 +14,7 @@ links = [
     {'name':_('Logout'),'class':'auth.logout'},
     {'name':_('Index'), 'class':'main.index'},
     {'name':_('Explore'),'class':'main.explore'},
+    {'name':_('Messages'),'class':'main.messages'},
     {'name':_('Add'),'class':'main.inprogress'},
     {'name':_('List'),'class':'main.inprogress'}
 ]
@@ -173,6 +174,7 @@ def send_message(recipent):
         msg = MessageForm(author=current_user, recipent=user,
                         body=form.message.data)
         db.session.add(msg)
+        user.add_notification('unread_message_count', user.new_messages())
         db.session.commit()
         flash(_('Your message has been sent.'))
         return redirect(url_for('main.user', username=recipent))
@@ -182,6 +184,7 @@ def send_message(recipent):
 @login_required
 def messages():
     current_user.last_message_read_time = datetime.utcnow()
+    current_user.add_notification('unread_message_count', 0)
     db.session.commit()
     page = request.args.get('page', 1, type=int)
     messages = current_user.messages_recieved.order_by(
