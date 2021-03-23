@@ -94,7 +94,7 @@ def user(username):
         if posts.has_prev else None
     form = EmptyForm()
     return render_template('user.html', user=user, posts=posts.items,
-        form=form, links=links, next_url=next_url, prev_url=prev_url)
+        form=form, links=links, next_url=next_url, prev_url=prev_url, title=current_user.username)
 
 @bp.route('/user/<username>/popup')
 @login_required
@@ -116,7 +116,7 @@ def edit_profile():
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.about_me.data = current_user.about_me
-    return render_template('edit_profile.html', title=_('Edit Profile'), form=form, links=links)
+    return render_template('edit_profile.html', title=_('Edit Profile: ' + current_user.username), form=form, links=links)
 
 @bp.route('/follow/<username>', methods=['POST'])
 @login_required
@@ -167,18 +167,18 @@ def translate_text():
 
 @bp.route('/send_message/<recipient>', methods=['GET', 'POST'])
 @login_required
-def send_message(recipent):
-    user = User.query.filter_by(username=recipent).first_or_404()
+def send_message(recipient):
+    user = User.query.filter_by(username=recipient).first_or_404()
     form = MessageForm()
     if form.validate_on_submit():
-        msg = MessageForm(author=current_user, recipent=user,
+        msg = MessageForm(author=current_user, recipient=user,
                         body=form.message.data)
         db.session.add(msg)
         user.add_notification('unread_message_count', user.new_messages())
         db.session.commit()
         flash(_('Your message has been sent.'))
-        return redirect(url_for('main.user', username=recipent))
-    return render_template('send_message.html', title=_('Send Message'), form=form, recipent=recipent, links=links)
+        return redirect(url_for('main.user', username=recipient))
+    return render_template('send_message.html', title=_('Send Message'), form=form, recipient=recipient, links=links)
 
 @bp.route('/messages')
 @login_required
@@ -194,7 +194,8 @@ def messages():
         if messages.has_next else None
     prev_url = url_for('main.messages', page=messages.prev_num) \
         if messages.has_prev else None
-    return render_template('messages.html', messages=messages.items, next_url=next_url, prev_url=prev_url, links=links)
+    return render_template('messages.html', messages=messages.items,
+            next_url=next_url, prev_url=prev_url, links=links, title=current_user.username)
 
 @bp.route('/inprogress')
 def inprogress():
