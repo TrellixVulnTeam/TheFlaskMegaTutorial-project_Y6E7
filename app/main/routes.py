@@ -3,7 +3,7 @@ from flask import render_template, flash, redirect, url_for, request, g, jsonify
 from flask_login import current_user, login_required
 from app import db
 from app.main import bp
-from app.models import User, Post, Message
+from app.models import User, Post, Message, Notification
 from app.main.forms import EditProfileForm, EmptyForm, PostForm, SearchForm, MessageForm
 from app.translate import translate
 from datetime import datetime
@@ -196,6 +196,19 @@ def messages():
         if messages.has_prev else None
     return render_template('messages.html', messages=messages.items,
             next_url=next_url, prev_url=prev_url, links=links, title=current_user.username)
+
+@bp.route('/notifications')
+@login_required
+def notifications():
+    since = request.args.get('since', 0.0, type=float)
+    notifications = current_user.notifications.filter(
+        Notification.timestamp > since).order_by(Notification.timestamp.asc())
+    return jsonify([{
+        'name': n.name,
+        'data': n.get_data(),
+        'timestamp': n.timestamp
+    } for n in notifications]
+    )
 
 @bp.route('/inprogress')
 def inprogress():
