@@ -207,8 +207,7 @@ def notifications():
         'name': n.name,
         'data': n.get_data(),
         'timestamp': n.timestamp
-    } for n in notifications]
-    )
+    } for n in notifications])
 
 @bp.route('/inprogress')
 def inprogress():
