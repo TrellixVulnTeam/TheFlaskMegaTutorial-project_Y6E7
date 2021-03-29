@@ -44,7 +44,7 @@ def export_posts(user_id):
         total_posts = user.posts.count()
         for post in user.posts.order_by(Post.timestamp.asc()):
             data.append({'body': post.body, 'timestamp': post.timestamp.isoformat() + 'Z'})
-            time.sleep(5)
+            time.sleep(1)
             i +=1
             _set_task_progress(100 * i // total_posts)
         send_email('[bla bla bla] Your blog posts export',
@@ -54,6 +54,7 @@ def export_posts(user_id):
             attachments=[('posts.json', 'application/json', json.dumps({'posts': data}, indent=4))],
             sync=True)
     except:
-        app.logger.error('Unhandled exception', exec_info=sys.exc_info())
+        app.logger.error('Unhandled exception', exc_info=sys.exc_info())
+        _set_task_progress(100)
     finally:
         _set_task_progress(100)

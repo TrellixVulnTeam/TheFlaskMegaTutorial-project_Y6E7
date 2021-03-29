@@ -9,6 +9,9 @@
                 {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
                 {% if user.last_seen %}<p>{{ _('Last seen on') }}: {{ moment(user.last_seen).calendar() }}</p>{% endif %}
                 <p>{{ user.followers.count() }} {{ _('followers') }}, {{ user.followed.count() }} {{ _('following') }}</p>
+                {% if not current_user.get_task_in_progress('export_posts') %}
+                <p><a href="{{ url_for('main.export_posts') }}">{{ _('Export your posts') }}</a></p>
+                {% endif %}
                 {% if user == current_user %}
                 <p><a href="{{ url_for('main.edit_profile') }}">{{ _('Edit your profile') }}</a></p>
                 {% elif not current_user.is_following(user) %}
@@ -55,9 +58,3 @@
         </ul>
     </nav>
 {% endblock %}
-    <!-- {% if prev_url %}
-    <a href="{{ prev_url }}">Newer posts</a>
-    {% endif %}
-    {% if next_url %}
-    <a href="{{ next_url }}">Older posts</a>
-    {% endif %} -->
