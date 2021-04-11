@@ -32,3 +32,4 @@ class Config(object):
 
     #Redis
     REDIS_URL = os.environ.get('REDIS_URL') or 'redis://'
+    REDIS_QUEUENAME = os.environ.get('REDIS_QUEUENAME') or 'default-tasks'
