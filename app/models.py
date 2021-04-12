@@ -1,8 +1,5 @@
 from datetime import datetime
-from logging import setLoggerClass
-from typing import Type
 from flask.helpers import url_for
-import flask_babel
 
 from sqlalchemy.orm import backref
 from app import db
@@ -85,7 +82,7 @@ class PaginatedAPIMixin(object):
         }
         return data
 
-class User(PaginatedAPIMixin ,UserMixin, db.Model):
+class User(PaginatedAPIMixin, UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)

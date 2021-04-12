@@ -33,3 +33,5 @@ class Config(object):
     #Redis
     REDIS_URL = os.environ.get('REDIS_URL') or 'redis://'
     REDIS_QUEUENAME = os.environ.get('REDIS_QUEUENAME') or 'default-tasks'
+
+    # SERVER_NAME = os.environ.get('SERVER_NAME') or '127.0.0.1:5000'
