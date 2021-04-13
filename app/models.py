@@ -15,10 +15,7 @@ import json
 import redis
 import rq
 
-@login.user_loader
-def load_user(id):
-    return User.query.get(int(id))
-    
+
 class SearchableMixin(object):
     @classmethod
     def search(cls, expression, page, per_page):
@@ -62,6 +59,7 @@ followers = db.Table('followers',
     db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('followed_id', db.Integer, db.ForeignKey('user.id')))
 
+
 class PaginatedAPIMixin(object):
     @staticmethod
     def to_collection_dict(query, page, per_page, endpoint, **kwargs):
@@ -81,6 +79,7 @@ class PaginatedAPIMixin(object):
             }
         }
         return data
+
 
 class User(PaginatedAPIMixin, UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -171,13 +170,13 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
             'last_seen': self.last_seen.isoformat() + 'Z',
             'about_me': self.about_me,
             'post_count': self.posts.count(),
-            'followers_count': self.followers.count(),
-            'followerd_count': self.followed.count(),
+            'follower_count': self.followers.count(),
+            'followed_count': self.followed.count(),
             '_links': {
                 'self': url_for('api.get_user', id=self.id),
                 'followers': url_for('api.get_followers', id=self.id),
                 'followed': url_for('api.get_followed', id=self.id),
-                'avatar': self.avatar
+                'avatar': self.avatar(128)
             }
         }
         if include_email:
@@ -203,6 +202,12 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
+
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
+
+
 class Post(SearchableMixin, db.Model):
     __searchable__ = ['body']
     id = db.Column(db.Integer, primary_key=True)
@@ -214,6 +219,7 @@ class Post(SearchableMixin, db.Model):
     def __repr__(self):
         return '<Post {}>'.format(self.body)
 
+
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     sender_id = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -224,6 +230,7 @@ class Message(db.Model):
     def __repr__(self):
         return '<Message {}>'.format(self.body)
 
+
 class Notification(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), index=True)
@@ -233,6 +240,7 @@ class Notification(db.Model):
 
     def get_data(self):
         return json.loads(str(self.payload_json))
+
 
 class Task(db.Model):
     id = db.Column(db.String(36), primary_key=True)
