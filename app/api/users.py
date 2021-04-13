@@ -1,3 +1,4 @@
+import re
 from app import db
 from app.api.errors import bad_request
 from app.api import bp
@@ -40,7 +41,7 @@ def create_user():
     data = request.get_json() or {}
     if 'username' not in data or 'email' not in data or 'password' not in data:
         return bad_request('username, email and password are required on this endpoint')
-    if User.query.filter_by(usename=data['username']).first():
+    if User.query.filter_by(username=data['username']).first():
         return bad_request('use different username')
     if User.query.filter_by(email=data['email']).first():
         return bad_request('use different email')
@@ -56,4 +57,14 @@ def create_user():
 
 @bp.route('/users/<int:id>', methods=['PUT'])
 def update_user(id):
-    pass
+    user = User.query.get_or_404(id)
+    data = request.get_json() or {}
+    if 'username' in data and data['username'] != user.username and \
+            User.query.filter_by(username=data['username']).first():
+        return bad_request('use different username')
+    if 'email' in data and data['email'] != user.email and \
+                User.query.filter_by(email=data['email']).first():
+        return bad_request('use different email')
+    user.from_dict(data, new_user=False)
+    db.session.commit()
+    return jsonify(user.to_dict())
